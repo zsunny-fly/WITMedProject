@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 头部文件检查 XML 文件的正确性，官网获取 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ekgc.witmed.system.dictionary.dao.PatientDao">
+	<select id="findListByQuery" parameterType="Patient" resultType="Patient">
+		select
+		id,
+		name,
+		cellphone,
+		password,
+		status,
+		createUser,
+		createTime,
+		updateUser,
+		updateTime
+		from
+		sys_patient
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">id=#{id} and </if>
+				<if test="name != null">name like concat('%',#{name},'%') and </if>
+				<if test="cellphone != null">cellphone=#{cellphone} and </if>
+				<if test="status != null">status=#{status} and </if>
+			</trim>
+		</where>
+	</select>
+
+
+	<insert id="save" parameterType="Patient" >
+		insert into sys_patient(
+		<trim suffixOverrides=",">
+			<if test="id != null">id,</if>
+			<if test="name != null">name,</if>
+			<if test="cellphone != null">cellphone,</if>
+			<if test="password != null">password,</if>
+			<if test="status != null">status,</if>
+			<if test="createUser != null">createUser,</if>
+			<if test="createTime != null">createTime,</if>
+			<if test="updateUser != null">updateUser,</if>
+			<if test="updateTime != null">updateTime,</if>
+		</trim>
+		) values(
+		<trim suffixOverrides=",">
+			<if test="id != null">#{id},</if>
+			<if test="name != null">#{name},</if>
+			<if test="cellphone != null">#{cellphone},</if>
+			<if test="password != null">#{password},</if>
+			<if test="status != null">#{status},</if>
+			<if test="createUser != null">#{createUser},</if>
+			<if test="createTime != null">#{createTime},</if>
+			<if test="updateUser != null">#{updateUser},</if>
+			<if test="updateTime != null">#{updateTime},</if>
+		</trim>
+		)
+	</insert>
+
+	<update id="update" parameterType="Patient" >
+		update sys_patient
+		<set>
+			<trim suffixOverrides=",">
+				<if test="name != null">name=#{name},</if>
+				<if test="cellphone != null">cellphone=#{cellphone},</if>
+				<if test="password != null">password=#{password},</if>
+				<if test="status != null">status=#{status},</if>
+				<if test="createUser != null">createUser=#{createUser},</if>
+				<if test="createTime != null">createTime=#{createTime},</if>
+				<if test="updateUser != null">updateUser=#{updateUser},</if>
+				<if test="updateTime != null">updateTime=#{updateTime},</if>
+			</trim>
+		</set>
+		<where>
+			<if test="id != null">id=#{id}</if>
+		</where>
+	</update>
+
+</mapper>

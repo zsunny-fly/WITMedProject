@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 头部文件检查 XML 文件的正确性，官网获取 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ekgc.witmed.system.cascade.dao.DivisionDao">
+	<select id="findListByQuery" parameterType="Division" resultMap="resultMap">
+		select
+			sd.id,
+			sd.text,
+			sd.code,
+			sd.createTime,
+			sd.createUser,
+			sd.updateUser,
+			sd.updateTime,
+			sp.id parent_id,
+			sp.text parent_text,
+			sp.code parent_code,
+		    sp.status parent_status,
+			sp.createTime parent_createTime,
+			sp.createUser parent_createUser,
+			sp.updateUser parent_updateUser,
+			sp.updateTime parent_updateTime
+		from sys_division sd left join sys_division sp
+		    on sd.parentCode=sp.code
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null" >id=#{id} and </if>
+				<if test="text != null" >text like concat('%',#{text},'%') and </if>
+				<if test="code != null" >code=#{code} and </if>
+				<if test="status != null">status=#{status}</if>
+				<if test="parent != null and parent.id != null" >sp.id=#{parent.id} and </if>
+				<if test="parent != null and parent.code != null" >sp.code=#{parent.code} and </if>
+				<if test="id != null" >id=#{id} and </if>
+			</trim>
+		</where>
+	</select>
+	<resultMap id="resultMap" type="Division">
+		<id property="id" javaType="java.lang.String" column="id"/>
+		<result property="text" javaType="java.lang.String" column="text"/>
+		<result property="code" javaType="java.lang.String" column="code"/>
+		<result property="status" javaType="java.lang.String" column="status"/>
+		<result property="createUser" javaType="java.lang.String" column="createUser"/>
+		<result property="createTime" javaType="java.util.Date" column="createTime"/>
+		<result property="updateUser" javaType="java.lang.String" column="updateUser"/>
+		<result property="updateTime" javaType="java.util.Date" column="updateTime"/>
+		<association property="parent" column="" javaType="Division">
+			<id property="id" javaType="java.lang.String" column="parent_id"/>
+			<result property="text" javaType="java.lang.String" column="parent_text"/>
+			<result property="code" javaType="java.lang.String" column="parent_code"/>
+			<result property="status" javaType="java.lang.String" column="parent_status"/>
+			<result property="createUser" javaType="java.lang.String" column="parent_createUser"/>
+			<result property="createTime" javaType="java.util.Date" column="parent_createTime"/>
+			<result property="updateUser" javaType="java.lang.String" column="parent_updateUser"/>
+			<result property="updateTime" javaType="java.util.Date" column="parent_updateTime"/>
+		</association>
+	</resultMap>
+
+	<insert id="save" parameterType="Division">
+		insert into sys_division(
+			<trim suffixOverrides=",">
+				<if test="id != null">id,</if>
+				<if test="text != null" >text, </if>
+				<if test="code != null" >code,</if>
+				<if test="status != null">status,</if>
+		    	<if test="parent != null parent.id != null">parentCode,</if>
+		        <if test="createUser != null">createUser,</if>
+				<if test="createTime != null">createTime,</if>
+				<if test="updateUser != null">updateUser,</if>
+				<if test="createTime != null">createTime</if>
+			</trim>
+		) values(
+			<trim suffixOverrides=",">
+				<if test="id != null">id=#{id},</if>
+				<if test="text != null" >text=#{text} ,</if>
+				<if test="code != null" >code=#{code},</if>
+				<if test="status != null">status=#{status},</if>
+				<if test="parent != null parent.id != null">parentCode=#{parent.code},</if>
+				<if test="createUser != null">createUser=#{createUser},</if>
+				<if test="createTime != null">createTime=#{createTime},</if>
+				<if test="updateUser != null">updateUser=#{updateUser},</if>
+				<if test="createTime != null">createTime=#{updateTime},</if>
+			</trim>
+		)
+	</insert>
+
+	<update id="" parameterType="Division">
+		update sys_division
+		<set>
+			<trim suffixOverrides=",">
+				<if test="text != null" >text=#{text} ,</if>
+				<if test="code != null" >code=#{code},</if>
+				<if test="status != null">status=#{status},</if>
+				<if test="parent != null parent.id != null">parentCode=#{parent.code},</if>
+				<if test="createUser != null">createUser=#{createUser},</if>
+				<if test="createTime != null">createTime=#{createTime},</if>
+				<if test="updateUser != null">updateUser=#{updateUser},</if>
+				<if test="createTime != null">createTime=#{updateTime},</if>
+			</trim>
+
+		</set>
+		<where>
+			<if test="id != null">id=#{id}</if>
+		</where>
+	</update>
+
+</mapper>

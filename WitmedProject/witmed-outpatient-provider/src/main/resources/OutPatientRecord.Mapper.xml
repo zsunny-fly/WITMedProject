@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 头部文件检查 XML 文件的正确性，官网获取 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ekgc.witmed.outpatient.dao.OutPatientRecordDao">
+	<select id="findListByQuery" parameterType="OutPatientRecord" resultType="OutPatientRecord">
+		select
+		id,
+		docTypeCode,
+		docTypeText,
+		hospitalName,
+		medRecordCode,
+		effectTime,
+		invalidTime,
+		idTypeCode,
+		idCard,
+		idEffectTime,
+		idInvalidTime,
+		idFrom,
+		nameTypeCode,
+		name,
+		patientType,
+		genderCode,
+		countryCode,
+		nationCode,
+		marryCode,
+		birthday,
+		addrTypeCode,
+		provinceCode,
+		cityCode,
+		townCode,
+		detailAddr,
+		postalCode,
+		phoneTypeCode,
+		phone,
+		email,
+		dept,
+		doctorName,
+		doctorDuty,
+		medActionCode,
+		medActionText,
+		medTime,
+		signTime,
+		medResource,
+		medResult,
+		status,
+		createUser,
+		createTime,
+		updateUser,
+		updateTime
+		from
+			sys_outpatient_record
+		<where>
+			<trim suffixOverrides="and">
+				<if test="id != null">id=#{id} and </if>
+				<if test="docTypeCode != null">docTypeCode=#{docTypeCode} and </if>
+				<if test="docTypeText != null">docTypeText=#{docTypeText} and </if>
+				<if test="hospitalName != null">hospitalName=#{hospitalName} and </if>
+				<if test="medRecordCode != null">medRecordCode=#{medRecordCode} and </if>
+				<if test="effectTime != null">effectTime=#{effectTime} and </if>
+				<if test="invalidTime != null">invalidTime=#{invalidTime} and </if>
+				<if test="idTypeCode != null">idTypeCode=#{idTypeCode} and </if>
+				<if test="idCard != null">idCard=#{idCard} and </if>
+				<if test="idEffectTime != null">idEffectTime=#{idEffectTime} and </if>
+				<if test="idInvalidTime != null">idInvalidTime=#{idInvalidTime} and </if>
+				<if test="idFrom != null">idFrom=#{idFrom} and </if>
+				<if test="nameTypeCode != null">nameTypeCode=#{nameTypeCode} and </if>
+				<if test="name != null">name=#{name} and </if>
+				<if test="patientType != null">patientType=#{patientType} and </if>
+				<if test="genderCode != null">genderCode=#{genderCode} and </if>
+				<if test="countryCode != null">countryCode=#{countryCode} and </if>
+				<if test="nationCode != null">nationCode=#{nationCode} and </if>
+				<if test="marryCode != null">marryCode=#{marryCode} and </if>
+				<if test="birthday != null">birthday=#{birthday} and </if>
+				<if test="addrTypeCode != null">addrTypeCode=#{addrTypeCode} and </if>
+				<if test="provinceCode != null">provinceCode=#{provinceCode} and </if>
+				<if test="cityCode != null">cityCode=#{cityCode} and </if>
+				<if test="townCode != null">townCode=#{townCode} and </if>
+				<if test="detailAddr != null">detailAddr=#{detailAddr} and </if>
+				<if test="postalCode != null">postalCode=#{postalCode} and </if>
+				<if test="phoneTypeCode != null">phoneTypeCode=#{phoneTypeCode} and </if>
+				<if test="phone != null">phone=#{phone} and </if>
+				<if test="email != null">email=#{email} and </if>
+				<if test="dept != null">dept=#{dept} and </if>
+				<if test="doctorName != null">doctorName=#{doctorName} and </if>
+				<if test="doctorDuty != null">doctorDuty=#{doctorDuty} and </if>
+				<if test="medActionCode != null">medActionCode=#{medActionCode} and </if>
+				<if test="medActionText != null">medActionText=#{medActionText} and </if>
+				<if test="medTime != null">medTime=#{medTime} and </if>
+				<if test="signTime != null">signTime=#{signTime} and </if>
+				<if test="medResource != null">medResource=#{medResource} and </if>
+				<if test="medResult != null">medResult=#{medResult} and </if>
+				<if test="status != null">status=#{status} and </if>
+				<if test="createUser != null">createUser=#{createUser} and </if>
+				<if test="createTime != null">createTime=#{createTime} and </if>
+				<if test="updateUser != null">updateUser=#{updateUser} and </if>
+				<if test="updateTime != null">updateTime=#{updateTime} and </if>
+			</trim>
+		</where>
+	</select>
+
+
+	<insert id="save" parameterType="DictionaryEntity" >
+		insert into sys_outpatient_record(
+		<trim suffixOverrides=",">
+			<if test="id != null">id, </if>
+			<if test="docTypeCode != null">docTypeCode, </if>
+			<if test="docTypeText != null">docTypeText, </if>
+			<if test="hospitalName != null">hospitalName, </if>
+			<if test="medRecordCode != null">medRecordCode, </if>
+			<if test="effectTime != null">effectTime, </if>
+			<if test="invalidTime != null">invalidTime, </if>
+			<if test="idTypeCode != null">idTypeCode, </if>
+			<if test="idCard != null">idCard=#{idCard} , </if>
+			<if test="idEffectTime != null">idEffectTime , </if>
+			<if test="idInvalidTime != null">idInvalidTime , </if>
+			<if test="idFrom != null">idFrom, </if>
+			<if test="nameTypeCode != null">nameTypeCode , </if>
+			<if test="name != null">name , </if>
+			<if test="patientType != null">patientType, </if>
+			<if test="genderCode != null">genderCode, </if>
+			<if test="countryCode != null">countryCode, </if>
+			<if test="nationCode != null">nationCode , </if>
+			<if test="marryCode != null">marryCode, </if>
+			<if test="birthday != null">birthday, </if>
+			<if test="addrTypeCode != null">addrTypeCode, </if>
+			<if test="provinceCode != null">provinceCode, </if>
+			<if test="cityCode != null">cityCode, </if>
+			<if test="townCode != null">townCode, </if>
+			<if test="detailAddr != null">detailAddr, </if>
+			<if test="postalCode != null">postalCode, </if>
+			<if test="phoneTypeCode != null">phoneTypeCode, </if>
+			<if test="phone != null">phone, </if>
+			<if test="email != null">email, </if>
+			<if test="dept != null">dept=, </if>
+			<if test="doctorName != null">doctorName, </if>
+			<if test="doctorDuty != null">doctorDuty, </if>
+			<if test="medActionCode != null">medActionCode , </if>
+			<if test="medActionText != null">medActionText, </if>
+			<if test="medTime != null">medTime, </if>
+			<if test="signTime != null">signTime, </if>
+			<if test="medResource != null">medResource, </if>
+			<if test="medResult != null">medResult, </if>
+			<if test="status != null">status, </if>
+			<if test="createUser != null">createUser, </if>
+			<if test="createTime != null">createTime, </if>
+			<if test="updateUser != null">updateUser, </if>
+			<if test="updateTime != null">updateTime, </if>
+		</trim>
+		) values(
+		<trim suffixOverrides=",">
+			<if test="id != null">#{id} , </if>
+			<if test="docTypeCode != null">#{docTypeCode} , </if>
+			<if test="docTypeText != null">#{docTypeText} , </if>
+			<if test="hospitalName != null">#{hospitalName} , </if>
+			<if test="medRecordCode != null">#{medRecordCode} , </if>
+			<if test="effectTime != null">#{effectTime} , </if>
+			<if test="invalidTime != null">#{invalidTime} , </if>
+			<if test="idTypeCode != null">#{idTypeCode} , </if>
+			<if test="idCard != null">#{idCard} , </if>
+			<if test="idEffectTime != null">#{idEffectTime} , </if>
+			<if test="idInvalidTime != null">#{idInvalidTime} , </if>
+			<if test="idFrom != null">=#{idFrom} , </if>
+			<if test="nameTypeCode != null">#{nameTypeCode} , </if>
+			<if test="name != null">#{name} , </if>
+			<if test="patientType != null">#{patientType} , </if>
+			<if test="genderCode != null">#{genderCode} , </if>
+			<if test="countryCode != null">#{countryCode} , </if>
+			<if test="nationCode != null">#{nationCode} , </if>
+			<if test="marryCode != null">#{marryCode} , </if>
+			<if test="birthday != null">#{birthday} , </if>
+			<if test="addrTypeCode != null">#{addrTypeCode} , </if>
+			<if test="provinceCode != null">#{provinceCode} , </if>
+			<if test="cityCode != null">#{cityCode} , </if>
+			<if test="townCode != null">#{townCode} , </if>
+			<if test="detailAddr != null">#{detailAddr} , </if>
+			<if test="postalCode != null">#{postalCode} , </if>
+			<if test="phoneTypeCode != null">#{phoneTypeCode} , </if>
+			<if test="phone != null">#{phone} , </if>
+			<if test="email != null">#{email} , </if>
+			<if test="dept != null">#{dept} , </if>
+			<if test="doctorName != null">#{doctorName} , </if>
+			<if test="doctorDuty != null">#{doctorDuty} , </if>
+			<if test="medActionCode != null">#{medActionCode} , </if>
+			<if test="medActionText != null">#{medActionText} , </if>
+			<if test="medTime != null">#{medTime} , </if>
+			<if test="signTime != null">#{signTime} , </if>
+			<if test="medResource != null">#{medResource} , </if>
+			<if test="medResult != null">#{medResult} , </if>
+			<if test="status != null">#{status} , </if>
+			<if test="createUser != null">#{createUser} , </if>
+			<if test="createTime != null">#{createTime} , </if>
+			<if test="updateUser != null">#{updateUser} , </if>
+			<if test="updateTime != null">#{updateTime} , </if>
+		</trim>
+		)
+	</insert>
+
+	<update id="update" parameterType="DictionaryEntity" >
+		update ${table}
+		<set>
+			<trim suffixOverrides=",">
+				<if test="docTypeCode != null">docTypeCode=#{docTypeCode} , </if>
+				<if test="docTypeText != null">docTypeText=#{docTypeText} , </if>
+				<if test="hospitalName != null">hospitalName=#{hospitalName} , </if>
+				<if test="medRecordCode != null">medRecordCode=#{medRecordCode} , </if>
+				<if test="effectTime != null">effectTime=#{effectTime} , </if>
+				<if test="invalidTime != null">invalidTime=#{invalidTime} , </if>
+				<if test="idTypeCode != null">idTypeCode=#{idTypeCode} , </if>
+				<if test="idCard != null">idCard=#{idCard} , </if>
+				<if test="idEffectTime != null">idEffectTime=#{idEffectTime} , </if>
+				<if test="idInvalidTime != null">idInvalidTime=#{idInvalidTime} , </if>
+				<if test="idFrom != null">idFrom=#{idFrom} , </if>
+				<if test="nameTypeCode != null">nameTypeCode=#{nameTypeCode} , </if>
+				<if test="name != null">name=#{name} , </if>
+				<if test="patientType != null">patientType=#{patientType} , </if>
+				<if test="genderCode != null">genderCode=#{genderCode} , </if>
+				<if test="countryCode != null">countryCode=#{countryCode} , </if>
+				<if test="nationCode != null">nationCode=#{nationCode} , </if>
+				<if test="marryCode != null">marryCode=#{marryCode} , </if>
+				<if test="birthday != null">birthday=#{birthday} , </if>
+				<if test="addrTypeCode != null">addrTypeCode=#{addrTypeCode} , </if>
+				<if test="provinceCode != null">provinceCode=#{provinceCode} , </if>
+				<if test="cityCode != null">cityCode=#{cityCode} , </if>
+				<if test="townCode != null">townCode=#{townCode} , </if>
+				<if test="detailAddr != null">detailAddr=#{detailAddr} , </if>
+				<if test="postalCode != null">postalCode=#{postalCode} , </if>
+				<if test="phoneTypeCode != null">phoneTypeCode=#{phoneTypeCode} , </if>
+				<if test="phone != null">phone=#{phone} , </if>
+				<if test="email != null">email=#{email} , </if>
+				<if test="dept != null">dept=#{dept} , </if>
+				<if test="doctorName != null">doctorName=#{doctorName} , </if>
+				<if test="doctorDuty != null">doctorDuty=#{doctorDuty} , </if>
+				<if test="medActionCode != null">medActionCode=#{medActionCode} , </if>
+				<if test="medActionText != null">medActionText=#{medActionText} , </if>
+				<if test="medTime != null">medTime=#{medTime} , </if>
+				<if test="signTime != null">signTime=#{signTime} , </if>
+				<if test="medResource != null">medResource=#{medResource} , </if>
+				<if test="medResult != null">medResult=#{medResult} , </if>
+				<if test="status != null">status=#{status} , </if>
+				<if test="createUser != null">createUser=#{createUser} , </if>
+				<if test="createTime != null">createTime=#{createTime} , </if>
+				<if test="updateUser != null">updateUser=#{updateUser} , </if>
+				<if test="updateTime != null">updateTime=#{updateTime} , </if>
+			</trim>
+		</set>
+		<where>
+			<if test="id != null">id=#{id} </if>
+		</where>
+	</update>
+
+</mapper>

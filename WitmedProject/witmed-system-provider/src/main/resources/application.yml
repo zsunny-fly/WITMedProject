@@ -1,0 +1,7 @@
+server:
+  port: 11199
+spring:
+  application:
+    name: witmed-system-provider
+  profiles:
+    active: client,data

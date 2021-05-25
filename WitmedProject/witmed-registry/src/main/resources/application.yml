@@ -1,0 +1,24 @@
+#### 配置本项目的端口号
+server:
+  port: 9999
+spring:
+  #### 配置项目的应用名
+  application:
+    name: witmed-registry
+  ### 配置 spring boot 重写 bean id名
+  main:
+    allow-bean-definition-overriding: true
+### 配置 Eureka server 相关信息
+eureka:
+  ### 配置 注册中心的 主机名
+  instance:
+    hostname: localhost
+  ### 配置 client 相关属性
+  client:
+    ### 禁止将本项目注册到注册中心
+    register-with-eureka: false
+    ### 禁止本注册中心去其他注册中心发现服务
+    fetch-registry: false
+    ### 暴露注册中心地址
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka

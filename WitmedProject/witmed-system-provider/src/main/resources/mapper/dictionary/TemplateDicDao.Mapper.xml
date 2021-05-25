@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- 头部文件检查 XML 文件的正确性，官网获取 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ekgc.witmed.system.dictionary.dao.TemplateDicDao">
+	<select id="findListByQuery" parameterType="java.util.Map" resultType="DictionaryEntity">
+		select
+		id,
+		text,
+		code,
+		status,
+		createUser,
+		createTime,
+		updateUser,
+		updateTime
+		from
+		${table}
+		<where>
+			<trim suffixOverrides="and">
+				<if test="obj.id != null">id=#{obj.id} and </if>
+				<if test="obj.text != null">text like concat('%',#{obj.text},'%') and </if>
+				<if test="obj.code != null">code=#{obj.code} and </if>
+				<if test="obj.status != null">status=#{obj.status} and </if>
+			</trim>
+		</where>
+	</select>
+
+
+	<insert id="save" parameterType="DictionaryEntity" >
+		insert into ${table}(
+		<trim suffixOverrides=",">
+			<if test="obj.id != null">id,</if>
+			<if test="obj.text != null">text,</if>
+			<if test="obj.code != null">code,</if>
+			<if test="obj.status != null">status,</if>
+			<if test="obj.createUser != null">createUser,</if>
+			<if test="obj.createTime != null">createTime,</if>
+			<if test="obj.updateUser != null">updateUser,</if>
+			<if test="obj.updateTime != null">updateTime,</if>
+		</trim>
+		) values(
+		<trim suffixOverrides=",">
+			<if test="obj.id != null">#{obj.id},</if>
+			<if test="obj.text != null">#{obj.text},</if>
+			<if test="obj.code != null">#{obj.code},</if>
+			<if test="obj.status != null">#{obj.status},</if>
+			<if test="obj.createUser != null">#{obj.createUser},</if>
+			<if test="obj.createTime != null">#{obj.createTime},</if>
+			<if test="obj.updateUser != null">#{obj.updateUser},</if>
+			<if test="obj.updateTime != null">#{obj.updateTime},</if>
+		</trim>
+		)
+	</insert>
+
+	<update id="update" parameterType="DictionaryEntity" >
+		update ${table}
+		<set>
+			<trim suffixOverrides=",">
+				<if test="obj.text != null">text=#{obj.text},</if>
+				<if test="obj.code != null">code=#{obj.code},</if>
+				<if test="obj.status != null">status=#{obj.status},</if>
+				<if test="obj.createUser != null">createUser=#{obj.createUser},</if>
+				<if test="obj.createTime != null">createTime=#{obj.createTime},</if>
+				<if test="obj.updateUser != null">updateUser=#{obj.updateUser},</if>
+				<if test="obj.updateTime != null">updateTime=#{obj.updateTime},</if>
+			</trim>
+		</set>
+		<where>
+			<if test="obj.id != null">id=#{obj.id}</if>
+		</where>
+	</update>
+
+
+</mapper>

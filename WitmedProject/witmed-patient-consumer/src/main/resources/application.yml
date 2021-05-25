@@ -1,0 +1,8 @@
+server:
+  port: 22288
+spring:
+  application:
+    name: witmed-patient-consumer
+  profiles:
+    active: client
+

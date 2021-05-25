@@ -1,0 +1,7 @@
+server:
+  port: 22299
+spring:
+  application:
+    name: witmed-patient-provider
+  profiles:
+    active: client,data
